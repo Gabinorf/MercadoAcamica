@@ -10,21 +10,10 @@ server.use(bodyParser.json());
 let usuarios = [
     {
         nombre : "gabino",
-        contresena:"rodriguez",
+        contresena:"holamundo",
         mail: "gabino@gmail.com",
-        articulos: [
-            {
-                nombre: "pelota",
-                descripciones: "pelota de futbol usada en el Maracana",
-                estado: "en stock" 
-            },
-            {
-                nombre: "gafas",
-                descripciones: "fueron usadas por la Coca Sarli",
-                estado: "sin stock" 
-            }
-        ]
-    }
+        articulos: misarticulos ,
+    },
     {
         nombre : "micaela",
         contresena:"rosas",
@@ -44,6 +33,20 @@ let usuarios = [
     }
 ];
 
+let misarticulos = [
+    {
+        id: 1,
+        nombre: "pelota",
+        descripciones: "pelota de futbol usada en el Maracana",
+        estado: "en stock" 
+    },
+    {
+        id: 2,
+        nombre: "gafas",
+        descripciones: "fueron usadas por la Coca Sarli",
+        estado: "sin stock" 
+    }
+];
 
 server.listen(3000, () => {
     console.log("se ha iniciado el server");
