@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    margin:0;
+    border:0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #0A1172;
+}
+.window {
+    width: 1000px;
+    height: 800px;
+    border: 2px solid #0A1172;
+    background-color: #FFFFFF;
+
+}
+
+.datos {
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: #0A1172;
+    position: relative;
+    border-color: #0A1172;
+    border-radius: 2px;
+    top: 30%;
+    left: 25%;
+    width: 500px;
+    height: 200px;
+}
+
+.button {
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
+.datos label {
+  margin: 10px; 
+    
+    
+}
+
+.datos input {
+    border: 1px solid grey;
+    font-size: 18px;
+}
+
+
+.title {
+    font-size: 20px; 
+    color: #0A1172;
+    border: 1px #0A1172 solid ;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#Ingresar, #Registrarse {
+    background-color: #0A1172;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    width: 150px;
+    height: 60px;
+    margin: 20px;
+}
+
