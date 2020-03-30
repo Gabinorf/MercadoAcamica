@@ -5,42 +5,45 @@
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     background-color: #0A1172;
 }
-.window {
-    width: 1000px;
-    height: 800px;
+
+header{
+    font-size: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 20px;
+}
+.window, .window2 {
+    max-width: 1000px;
+    width: 80%;
     border: 2px solid #0A1172;
     background-color: #FFFFFF;
-
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
 }
 
-.datos {
-    
+.datos { 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
+    font-size: 26px;
     color: #0A1172;
-    position: relative;
     border-color: #0A1172;
     border-radius: 2px;
-    top: 30%;
-    left: 25%;
-    width: 500px;
-    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .button {
-    position: relative;
-    top: 50%;
-    left: 50%;
+    padding-top: 50px;
+    margin: auto;
 }
 
 .datos label {
-  margin: 10px; 
+  margin: 20px; 
     
     
 }
@@ -48,10 +51,16 @@ body {
 .datos input {
     border: 1px solid grey;
     font-size: 18px;
+    margin: 20px;
+    margin-top: 0;
+    padding: 10px;
 }
 
 
 .title {
+    padding: 10px;
+    font-weight: bolder;
+    text-align: center;
     font-size: 20px; 
     color: #0A1172;
     border: 1px #0A1172 solid ;
@@ -64,9 +73,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 20px;
-    position: relative;
     width: 150px;
     height: 60px;
     margin: 20px;
 }
 
+.window2{
+    display: none;
+}
