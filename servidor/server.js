@@ -1,64 +1,73 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const server = express();
 const cors = require('cors');
+const server = express();
 
-server.use(cors());
 server.use(bodyParser.json());
-
-let art =  [
-    {
-        nombre: "pelota",
-        descripciones: "pelota de futbol usada en el Maracana",
-        estado: "en stock" 
-    },
-    {
-        nombre: "gafas",
-        descripciones: "fueron usadas por la Coca Sarli",
-        estado: "sin stock" 
-    }
-];
-
-let usuarios = [
-    {
-        nombre : "gabino",
-        contresena:"holamundo",
-        mail: "gabino@gmail.com",
-        articulos:art
-    },
-    {
-        nombre : "micaela",
-        contresena:"rosas",
-        mail: "mica@gmail.com",
-        articulos: [
-            {
-                nombre: "jeans",
-                descripciones: "tienen un guraco",
-                estado: "en stock" 
-            },
-            {
-                nombre: "alcohol en gel",
-                descripciones: "con aloe vera",
-                estado: "sin stock" 
-            }
-        ]
-    }
-];
-
 
 server.listen(3000, () => {
     console.log("se ha iniciado el server");
 });
 
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('mysql://root:@localhost:3306/mercadoacamica');
 
-server.get('/usuarios', (req,res) =>{
-    res.send(usuarios);
+async function getUsuarios(){
+    return await sequelize.query('SELECT * FROM usuarios',
+        {type: sequelize.QueryTypes.SELECT})
+        .then(res=>{
+            return res
+        })
+};
+
+async function getArticulos(){
+    return await sequelize.query('SELECT * FROM articulos',
+        {type: sequelize.QueryTypes.SELECT})
+        .then(res=>{
+            return res
+        })
+};
+
+server.get("/usuarios", async (req,res)=>{
+    
+    let datos = await getUsuarios().then(resultado=>{
+        return resultado
+    });
+    
+    res.json(datos);
 });
 
-
-server.post("/usuarios",(req,res) =>{
-    usuarios.push(req.body);
-    res.json("se agrego un usuario nuevo");
+server.get("/articulos", async (req,res)=>{
+    
+    let datos = await getArticulos().then(resultado=>{
+        return resultado
+    });
+    
+    res.json(datos);
 });
+
+server.post("/usuario", async (req,res)=>{
+    await sequelize.query("INSERT INTO usuarios VALUES (?, ?, ?, ?, ?)",
+        {replacements: [req.body.id, req.body.nombre, req.body.apellido, req.body.email, req.body.contrasena]})
+        .then(response=>{
+            res.send("se agrego un usuario")
+    })
+})
+
+server.post("/articulo", async (req,res)=>{
+    await sequelize.query("INSERT INTO articulos VALUES (?, ?, ?, ?, ?)",
+        {replacements: [req.body.id, req.body.nombre, req.body.descripcion, req.body.estado, req.body.id_usuario]})
+        .then(response=>{
+            res.send("se agrego un articulo")
+    })
+})
+
+server.post("/compras", async (req,res)=>{
+    await sequelize.query("INSERT INTO articulos_usuarios VALUES (?, ?, ?)",
+        {replacements: [req.body.id, req.body.id_articulo, req.body.id_usuario]})
+        .then(response=>{
+            res.send("se agrego una nueva compra")
+    })
+})
 
 
